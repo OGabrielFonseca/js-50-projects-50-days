@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --progress-fill: #2C3E50;
+    --progress-empty: #e0e0e0;
+    --background: white;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+}
+
+.progress {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+
+.progress::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    background-color: var(--progress-empty);
+    height: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.progress__line {
+    position: absolute;
+    z-index: -1;
+    width: 0%;
+    background-color: var(--progress-fill);
+    height: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: width 0.2s ease-in;
+}
+
+.progress__step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 200px;
+    border: 5px solid var(--progress-empty);
+    background-color: var(--background);
+    transition: border-color 0.2s ease-in;
+}
+
+.progress__step.active {
+    border-color: var(--progress-fill);
+}
+
+.buttons {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.button {
+    background-color: var(--progress-fill);
+    color: white;
+    padding: 10px 30px;  
+    border: transparent;
+    border-radius: 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center; 
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: black;
+    transform: scale(1.03);
+    transition: transform 0.3s ease-in;
+}
+
+.button.disabled {
+    background-color: var(--progress-empty);
+    transform: none;
+    cursor: default;
+}
